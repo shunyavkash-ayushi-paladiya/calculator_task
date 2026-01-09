@@ -17,7 +17,7 @@
         <div class="container">
             <div class="calculator">
 
-                <input type="text" id="display" readonly>
+                <input type="text" id="display" readonly placeholder="0">
 
                 <div class="buttons">
 
@@ -66,28 +66,38 @@
     </section>
 
     <script>
-        // document.addEventListener("DOMContentLoaded", () => {
-            // console.log("hello");
-            
-            const display = document.getElementById("display");
 
-            function appendToDisplay(value) {
-                display.value += value;
-            }
-            function clearDisplay() {
-                display.value = "";
-            }
-            function deleteLast() {
-                display.value = display.value.slice(0, -1);
-            }
-            function calculate() {
-                try {
-                    display.value = eval(display.value);
-                } catch {
-                    display.value = "Error";
+        const display = document.getElementById("display");
+
+        function appendToDisplay(value) {
+            if (display.value === 0) {
+                display.value = value;
+            } else {
+                if (display.value === '0') {
+                display.value = value;
+                } else {
+                    display.value += value;
                 }
             }
-        // });
+        }
+        function clearDisplay() {
+           display.value = "0";            
+        }
+        function deleteLast(value) {
+            if(display.value > 0){
+                display.value = display.value.slice(0, -1);
+            }
+            else{
+                display.value = "0";
+            }
+        }
+        function calculate() {
+            try {
+                display.value = eval(display.value);
+            } catch {
+                display.value = "0";
+            }
+        }
     </script>
 
 </body>
